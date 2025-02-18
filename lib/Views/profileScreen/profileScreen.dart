@@ -27,6 +27,8 @@ class profileScreen extends StatefulWidget {
 }
 
 class _profileScreenState extends State<profileScreen> {
+
+
   @override
   Widget build(BuildContext context) {
     var profileCon = Provider.of<profileContent>(context, listen: true);

@@ -46,7 +46,7 @@ class _splashScreenState extends State<splashScreen> {
               ),),
             ///Welcome Text
             customText(
-              textName: 'Instagram',
+              textName: 'Instagram Clone',
               textStyle: fontStyle.fontStyleAboreto(
                 fontSize: width/16.44
               ),

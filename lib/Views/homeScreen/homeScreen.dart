@@ -2,9 +2,7 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:insta_clone/Controller/provider/apiService/apiService.dart';
 import 'package:insta_clone/untils/homeScreenUntils/homeScreenUntils.dart';
-import 'package:provider/provider.dart';
 import '../../widgets/appBarWidgets/appBarWidgets.dart';
 import '../../widgets/postWidget/postWidget.dart';
 import '../../widgets/storyWidgets/storyWidget.dart';
@@ -23,8 +21,6 @@ class _homeScreenState extends State<homeScreen> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-    var apiService=Provider.of<ApiService>(context);
-
     return SingleChildScrollView(
       physics: ScrollPhysics(),
       child: FadeIn(

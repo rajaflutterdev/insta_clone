@@ -13,39 +13,51 @@ class ApiService extends ChangeNotifier {
   bool isLoading=false;
 
   fetchApiData() async {
-    isLoading=true;
-    notifyListeners();
+    if(dataList.isEmpty){
+      isLoading=true;
+      notifyListeners();
+    }
     var connectivityResult = await Connectivity().checkConnectivity();
 
     if (connectivityResult == ConnectivityResult.none) {
       var cachedData = await getCachedData();
       if (cachedData != null && cachedData.isNotEmpty) {
         dataList = cachedData;
-
         isLoading=false;
+        notifyListeners();
+      }
+      else {
+        isLoading = false;
         notifyListeners();
       }
     }
     else {
-      // Connected to the internet, fetch data from API
-      var res = await http.get(Uri.parse(url));
-      if (res.statusCode == 200) {
-        var body = res.body;
-        var jsonData = jsonDecode(body) as List;
-        dataList = jsonData.map((e) => instaModel.fromJson(e)).toList();
+      try{
+        var res = await http.get(Uri.parse(url));
+        if (res.statusCode == 200) {
+          var body = res.body;
+          var jsonData = jsonDecode(body) as List;
+          dataList = jsonData.map((e) => instaModel.fromJson(e)).toList();
 
-        // Cache the data
-        cacheData();
+          // Cache the data
+          cacheData();
+          isLoading=false;
+          notifyListeners();
+        }
+        else {
+          isLoading=false;
+          notifyListeners();
+
+
+        }
+      }
+      catch (e){
         isLoading=false;
         notifyListeners();
-      } else {
-        isLoading=false;
-        notifyListeners();
-
-
       }
     }
-    notifyListeners();
+    print(dataList.length);
+    print('Data List++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++');
   }
 
   cacheData() async {
@@ -63,3 +75,4 @@ class ApiService extends ChangeNotifier {
     return jsonData.map((item) => instaModel.fromJson(json.decode(item))).toList();
   }
 }
+

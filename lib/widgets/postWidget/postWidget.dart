@@ -11,7 +11,6 @@ import 'package:shimmer/shimmer.dart';
 import '../../Controller/provider/apiService/apiService.dart';
 import '../../customWidgets/customButton/customeButton.dart';
 import '../../customWidgets/gradientTextWidgets/gradientText.dart';
-import '../CarousalSlider/CarousalSlider.dart';
 
 class postWidget extends StatefulWidget {
   const postWidget({super.key});
@@ -21,6 +20,8 @@ class postWidget extends StatefulWidget {
 }
 
 class _postWidgetState extends State<postWidget> {
+
+
 
   @override
   Widget build(BuildContext context) {
